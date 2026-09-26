@@ -1,0 +1,359 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>FANTASY WORLD | Premier League 2030</title>
+
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+    <!-- NAVIGATION -->
+    <nav class="navbar">
+        <div class="logo">
+            <span>FW</span>
+            FANTASY WORLD
+        </div>
+
+        <div class="nav-links">
+            <a href="#clubs">Clubs</a>
+            <button onclick="openTable()">Table</button>
+            <button onclick="openFixtures()">Fixtures</button>
+        </div>
+    </nav>
+
+
+    <!-- HERO -->
+    <header class="hero">
+
+        <div class="hero-content">
+
+            <div class="season-tag">
+                ⚽ SEASON 2030
+            </div>
+
+            <h1>
+                FANTASY
+                <span>WORLD</span>
+            </h1>
+
+            <h2>Premier League 2030</h2>
+
+            <p>
+                Welcome to the future of English football.
+                Twenty clubs. One title. One world.
+            </p>
+
+            <div class="hero-buttons">
+                <button class="primary-btn" onclick="scrollToClubs()">
+                    EXPLORE CLUBS
+                </button>
+
+                <button class="secondary-btn" onclick="openTable()">
+                    VIEW TABLE
+                </button>
+            </div>
+
+        </div>
+
+        <div class="hero-ball">
+            ⚽
+        </div>
+
+    </header>
+
+
+    <!-- CLUB SECTION -->
+    <main id="clubs">
+
+        <div class="section-heading">
+
+            <div>
+                <p class="small-title">PREMIER LEAGUE 2030</p>
+
+                <h2>THE CLUBS</h2>
+            </div>
+
+            <div class="section-line"></div>
+
+        </div>
+
+
+        <!-- CLUB GRID -->
+        <section class="club-grid" id="clubGrid">
+
+            <!-- Arsenal -->
+            <div class="club-card">
+                <div class="club-number">01</div>
+                <div class="club-icon">🔴</div>
+                <h3>Arsenal</h3>
+                <p>ARS</p>
+            </div>
+
+            <!-- Aston Villa -->
+            <div class="club-card">
+                <div class="club-number">02</div>
+                <div class="club-icon">🟣</div>
+                <h3>Aston Villa</h3>
+                <p>AVL</p>
+            </div>
+
+            <!-- Bournemouth -->
+            <div class="club-card">
+                <div class="club-number">03</div>
+                <div class="club-icon">🔴</div>
+                <h3>Bournemouth</h3>
+                <p>BOU</p>
+            </div>
+
+            <!-- Brentford -->
+            <div class="club-card">
+                <div class="club-number">04</div>
+                <div class="club-icon">🐝</div>
+                <h3>Brentford</h3>
+                <p>BRE</p>
+            </div>
+
+            <!-- Brighton -->
+            <div class="club-card">
+                <div class="club-number">05</div>
+                <div class="club-icon">🔵</div>
+                <h3>Brighton</h3>
+                <p>BRI</p>
+            </div>
+
+            <!-- Chelsea -->
+            <div class="club-card">
+                <div class="club-number">06</div>
+                <div class="club-icon">🔵</div>
+                <h3>Chelsea</h3>
+                <p>CHE</p>
+            </div>
+
+            <!-- Crystal Palace -->
+            <div class="club-card">
+                <div class="club-number">07</div>
+                <div class="club-icon">🔴</div>
+                <h3>Crystal Palace</h3>
+                <p>CRY</p>
+            </div>
+
+            <!-- Everton -->
+            <div class="club-card">
+                <div class="club-number">08</div>
+                <div class="club-icon">🔵</div>
+                <h3>Everton</h3>
+                <p>EVE</p>
+            </div>
+
+            <!-- Fulham -->
+            <div class="club-card">
+                <div class="club-number">09</div>
+                <div class="club-icon">⚪</div>
+                <h3>Fulham</h3>
+                <p>FUL</p>
+            </div>
+
+            <!-- Leeds -->
+            <div class="club-card">
+                <div class="club-number">10</div>
+                <div class="club-icon">⚪</div>
+                <h3>Leeds United</h3>
+                <p>LEE</p>
+            </div>
+
+            <!-- Liverpool -->
+            <div class="club-card">
+                <div class="club-number">11</div>
+                <div class="club-icon">🔴</div>
+                <h3>Liverpool</h3>
+                <p>LIV</p>
+            </div>
+
+            <!-- Manchester City -->
+            <div class="club-card featured">
+                <div class="club-number">12</div>
+                <div class="club-icon">🔵</div>
+                <h3>Manchester City</h3>
+                <p>MCI</p>
+            </div>
+
+            <!-- Manchester United -->
+            <div class="club-card">
+                <div class="club-number">13</div>
+                <div class="club-icon">🔴</div>
+                <h3>Manchester United</h3>
+                <p>MUN</p>
+            </div>
+
+            <!-- Newcastle -->
+            <div class="club-card">
+                <div class="club-number">14</div>
+                <div class="club-icon">⚫</div>
+                <h3>Newcastle United</h3>
+                <p>NEW</p>
+            </div>
+
+            <!-- Nottingham Forest -->
+            <div class="club-card">
+                <div class="club-number">15</div>
+                <div class="club-icon">🔴</div>
+                <h3>Nottingham Forest</h3>
+                <p>NFO</p>
+            </div>
+
+            <!-- Sunderland -->
+            <div class="club-card">
+                <div class="club-number">16</div>
+                <div class="club-icon">🔴</div>
+                <h3>Sunderland</h3>
+                <p>SUN</p>
+            </div>
+
+            <!-- Tottenham -->
+            <div class="club-card">
+                <div class="club-number">17</div>
+                <div class="club-icon">⚪</div>
+                <h3>Tottenham</h3>
+                <p>TOT</p>
+            </div>
+
+            <!-- West Ham -->
+            <div class="club-card">
+                <div class="club-number">18</div>
+                <div class="club-icon">🔴</div>
+                <h3>West Ham</h3>
+                <p>WHU</p>
+            </div>
+
+            <!-- Wolves -->
+            <div class="club-card">
+                <div class="club-number">19</div>
+                <div class="club-icon">🟠</div>
+                <h3>Wolverhampton</h3>
+                <p>WOL</p>
+            </div>
+
+            <!-- Burnley -->
+            <div class="club-card">
+                <div class="club-number">20</div>
+                <div class="club-icon">🔵</div>
+                <h3>Burnley</h3>
+                <p>BUR</p>
+            </div>
+
+        </section>
+
+
+        <!-- ACTION BUTTONS -->
+        <section class="actions">
+
+            <button class="big-action table-action" onclick="openTable()">
+                <span>📊</span>
+                <div>
+                    <strong>VIEW TABLE</strong>
+                    <small>Premier League Standings</small>
+                </div>
+            </button>
+
+            <button class="big-action fixture-action" onclick="openFixtures()">
+                <span>📅</span>
+                <div>
+                    <strong>VIEW FIXTURES</strong>
+                    <small>2030 Match Schedule</small>
+                </div>
+            </button>
+
+        </section>
+
+    </main>
+
+
+    <!-- TABLE MODAL -->
+    <div class="modal" id="tableModal">
+
+        <div class="modal-box">
+
+            <button class="close-btn" onclick="closeModals()">×</button>
+
+            <div class="modal-header">
+                <p>FANTASY WORLD</p>
+                <h2>PREMIER LEAGUE TABLE</h2>
+                <span>2030 SEASON</span>
+            </div>
+
+            <div class="table-container">
+
+                <table>
+
+                    <thead>
+                        <tr>
+                            <th>#</th>
+                            <th>CLUB</th>
+                            <th>P</th>
+                            <th>W</th>
+                            <th>D</th>
+                            <th>L</th>
+                            <th>GD</th>
+                            <th>PTS</th>
+                        </tr>
+                    </thead>
+
+                    <tbody id="leagueTable">
+
+                    </tbody>
+
+                </table>
+
+            </div>
+
+        </div>
+
+    </div>
+
+
+    <!-- FIXTURES MODAL -->
+    <div class="modal" id="fixturesModal">
+
+        <div class="modal-box fixtures-box">
+
+            <button class="close-btn" onclick="closeModals()">×</button>
+
+            <div class="modal-header">
+                <p>FANTASY WORLD</p>
+                <h2>FIXTURES</h2>
+                <span>PREMIER LEAGUE 2030</span>
+            </div>
+
+            <div id="fixturesList"></div>
+
+        </div>
+
+    </div>
+
+
+    <!-- FOOTER -->
+    <footer>
+
+        <div class="footer-logo">
+            FANTASY WORLD
+        </div>
+
+        <p>
+            Premier League 2030 • A Fantasy Football Universe
+        </p>
+
+        <span>
+            © 2030 FANTASY WORLD
+        </span>
+
+    </footer>
+
+
+    <script src="script.js"></script>
+
+</body>
+  </html>
