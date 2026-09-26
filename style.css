@@ -604,3 +604,7 @@ footer span {
         font-size: 12px;
     }
   }
+.club-card {
+    text-decoration: none;
+    color: inherit;
+}
