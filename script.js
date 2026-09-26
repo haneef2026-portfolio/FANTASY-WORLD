@@ -1,6 +1,12 @@
-/* ===============================
+/* =====================================================
    FANTASY WORLD
    PREMIER LEAGUE 2030
+   20 CLUBS • 38 MATCHWEEKS • 380 MATCHES
+===================================================== */
+
+
+/* ===============================
+   CLUB DATABASE
 ================================ */
 
 const clubs = [
@@ -27,30 +33,217 @@ const clubs = [
 ];
 
 
+/* =====================================================
+   2030 MATCHWEEK DATES
+===================================================== */
+
+const matchweekDates = [
+
+    // FIRST HALF
+    "05 AUG",
+    "12 AUG",
+    "19 AUG",
+    "26 AUG",
+    "02 SEP",
+    "09 SEP",
+    "16 SEP",
+    "23 SEP",
+    "30 SEP",
+    "07 OCT",
+    "14 OCT",
+    "21 OCT",
+    "28 OCT",
+    "04 NOV",
+    "11 NOV",
+    "18 NOV",
+    "25 NOV",
+    "16 DEC",
+    "30 DEC",
+
+    // SECOND HALF
+    "03 JAN",
+    "10 JAN",
+    "17 JAN",
+    "24 JAN",
+    "31 JAN",
+    "07 FEB",
+    "14 FEB",
+    "21 FEB",
+    "28 FEB",
+    "07 MAR",
+    "14 MAR",
+    "21 MAR",
+    "28 MAR",
+    "04 APR",
+    "11 APR",
+    "18 APR",
+    "25 APR",
+    "09 MAY",
+    "30 MAY"
+];
+
+
+/* =====================================================
+   CREATE A TRUE ROUND-ROBIN FIXTURE LIST
+=====================================================
+
+20 teams
+19 rounds in first half
+19 rounds in second half
+
+Every team:
+- plays once per matchweek
+- faces every opponent once in MW1-19
+- faces every opponent again in MW20-38
+===================================================== */
+
+
+function generateFirstHalfFixtures(teamList) {
+
+    let teams = [...teamList];
+
+    const rounds = [];
+
+    for (let round = 0; round < teams.length - 1; round++) {
+
+        const matches = [];
+
+        for (let i = 0; i < teams.length / 2; i++) {
+
+            const home = teams[i];
+            const away = teams[teams.length - 1 - i];
+
+            matches.push({
+                home: home,
+                away: away
+            });
+
+        }
+
+        rounds.push(matches);
+
+        // Circle method
+        const fixed = teams[0];
+
+        const rotating = teams.slice(1);
+
+        rotating.unshift(rotating.pop());
+
+        teams = [fixed, ...rotating];
+    }
+
+    return rounds;
+}
+
+
 /* ===============================
-   TABLE DATA
+   FIRST HALF
 ================================ */
 
-const tableData = clubs.map((club, index) => {
+const firstHalf = generateFirstHalfFixtures(clubs);
 
-    const points = Math.max(0, 60 - index * 2);
 
-    return {
-        position: index + 1,
-        club: club,
-        played: 20,
-        wins: Math.floor(points / 3),
-        draws: 3,
-        losses: 20 - Math.floor(points / 3) - 3,
-        gd: 25 - index,
-        points: points
-    };
+/* ===============================
+   SECOND HALF
+   Reverse every fixture
+================================ */
+
+const secondHalf = firstHalf.map(round => {
+
+    return round.map(match => {
+
+        return {
+            home: match.away,
+            away: match.home
+        };
+
+    });
+
 });
 
 
 /* ===============================
-   OPEN TABLE
+   COMBINE ALL 38 MATCHWEEKS
 ================================ */
+
+const allMatchweeks = [
+    ...firstHalf,
+    ...secondHalf
+];
+
+
+/* =====================================================
+   VERIFY FIXTURE SYSTEM
+===================================================== */
+
+function verifyFixtures() {
+
+    console.log("Fantasy World fixture verification");
+
+    console.log(
+        "Matchweeks:",
+        allMatchweeks.length
+    );
+
+    console.log(
+        "Total matches:",
+        allMatchweeks.length * 10
+    );
+
+    clubs.forEach(club => {
+
+        let appearances = 0;
+
+        allMatchweeks.forEach(round => {
+
+            round.forEach(match => {
+
+                if (
+                    match.home === club ||
+                    match.away === club
+                ) {
+                    appearances++;
+                }
+
+            });
+
+        });
+
+        console.log(
+            club + ": " + appearances + " matches"
+        );
+
+    });
+
+}
+
+
+/* =====================================================
+   TABLE
+   EVERYTHING STARTS AT ZERO
+===================================================== */
+
+const tableData = clubs.map((club, index) => {
+
+    return {
+        position: index + 1,
+        club: club,
+        played: 0,
+        wins: 0,
+        draws: 0,
+        losses: 0,
+        gf: 0,
+        ga: 0,
+        gd: 0,
+        points: 0
+    };
+
+});
+
+
+/* =====================================================
+   OPEN TABLE
+===================================================== */
 
 function openTable() {
 
@@ -58,34 +251,59 @@ function openTable() {
 
     table.innerHTML = "";
 
+
     tableData.forEach(team => {
 
         const row = document.createElement("tr");
 
         row.innerHTML = `
-            <td>${team.position}</td>
+
+            <td>
+                ${team.position}
+            </td>
 
             <td>
                 ${team.club}
             </td>
 
-            <td>${team.played}</td>
+            <td>
+                ${team.played}
+            </td>
 
-            <td>${team.wins}</td>
+            <td>
+                ${team.wins}
+            </td>
 
-            <td>${team.draws}</td>
+            <td>
+                ${team.draws}
+            </td>
 
-            <td>${team.losses}</td>
+            <td>
+                ${team.losses}
+            </td>
 
-            <td>${team.gd > 0 ? "+" : ""}${team.gd}</td>
+            <td>
+                ${team.gf}
+            </td>
+
+            <td>
+                ${team.ga}
+            </td>
+
+            <td>
+                ${team.gd}
+            </td>
 
             <td class="points">
                 ${team.points}
             </td>
+
         `;
 
         table.appendChild(row);
+
     });
+
 
     document
         .getElementById("tableModal")
@@ -93,58 +311,97 @@ function openTable() {
 }
 
 
-/* ===============================
-   FIXTURE DATA
-================================ */
-
-const fixtures = [
-    ["16 AUG", "Arsenal", "Chelsea"],
-    ["23 AUG", "Manchester City", "Liverpool"],
-    ["30 AUG", "Manchester United", "Tottenham"],
-    ["13 SEP", "Newcastle United", "Arsenal"],
-    ["20 SEP", "Chelsea", "Manchester City"],
-    ["27 SEP", "Liverpool", "Manchester United"],
-    ["04 OCT", "Aston Villa", "Everton"],
-    ["18 OCT", "Tottenham", "Brighton"],
-    ["25 OCT", "Manchester City", "Arsenal"],
-    ["01 NOV", "Chelsea", "Liverpool"]
-];
-
-
-/* ===============================
+/* =====================================================
    OPEN FIXTURES
-================================ */
+===================================================== */
 
 function openFixtures() {
 
-    const container = document.getElementById("fixturesList");
+    const container =
+        document.getElementById("fixturesList");
 
     container.innerHTML = "";
 
-    fixtures.forEach(match => {
 
-        const fixture = document.createElement("div");
+    allMatchweeks.forEach((round, index) => {
 
-        fixture.className = "fixture";
+        const matchweek = index + 1;
 
-        fixture.innerHTML = `
-            <div class="fixture-date">
-                ${match[0]}
+        const date = matchweekDates[index];
+
+
+        const week = document.createElement("div");
+
+        week.className = "matchweek";
+
+
+        week.innerHTML = `
+
+            <div class="matchweek-header">
+
+                <div>
+
+                    <small>
+                        PREMIER LEAGUE 2030
+                    </small>
+
+                    <h3>
+                        MATCHWEEK ${matchweek}
+                    </h3>
+
+                </div>
+
+                <strong>
+                    ${date}
+                </strong>
+
             </div>
 
-            <div class="fixture-teams">
-                ${match[1]}
-                <span class="fixture-vs">VS</span>
-                ${match[2]}
-            </div>
-
-            <div class="fixture-status">
-                MATCHWEEK
-            </div>
         `;
 
-        container.appendChild(fixture);
+
+        round.forEach(match => {
+
+            const fixture =
+                document.createElement("div");
+
+            fixture.className = "fixture";
+
+
+            fixture.innerHTML = `
+
+                <div class="fixture-teams">
+
+                    <span>
+                        ${match.home}
+                    </span>
+
+                    <strong>
+                        VS
+                    </strong>
+
+                    <span>
+                        ${match.away}
+                    </span>
+
+                </div>
+
+                <div class="fixture-status">
+                    UPCOMING
+                </div>
+
+            `;
+
+
+            week.appendChild(fixture);
+
+        });
+
+
+        container.appendChild(week);
+
     });
+
 
     document
         .getElementById("fixturesModal")
@@ -152,9 +409,9 @@ function openFixtures() {
 }
 
 
-/* ===============================
+/* =====================================================
    CLOSE MODALS
-================================ */
+===================================================== */
 
 function closeModals() {
 
@@ -162,15 +419,17 @@ function closeModals() {
         .getElementById("tableModal")
         .classList.remove("active");
 
+
     document
         .getElementById("fixturesModal")
         .classList.remove("active");
+
 }
 
 
-/* ===============================
-   CLOSE WHEN CLICKING OUTSIDE
-================================ */
+/* =====================================================
+   CLICK OUTSIDE MODAL
+===================================================== */
 
 window.addEventListener("click", function(event) {
 
@@ -178,28 +437,32 @@ window.addEventListener("click", function(event) {
         event.target.id === "tableModal" ||
         event.target.id === "fixturesModal"
     ) {
+
         closeModals();
+
     }
 
 });
 
 
-/* ===============================
-   ESC KEY
-================================ */
+/* =====================================================
+   ESCAPE KEY
+===================================================== */
 
 document.addEventListener("keydown", function(event) {
 
     if (event.key === "Escape") {
+
         closeModals();
+
     }
 
 });
 
 
-/* ===============================
+/* =====================================================
    SCROLL TO CLUBS
-================================ */
+===================================================== */
 
 function scrollToClubs() {
 
@@ -210,3 +473,10 @@ function scrollToClubs() {
         });
 
 }
+
+
+/* =====================================================
+   RUN FIXTURE CHECK
+===================================================== */
+
+verifyFixtures();
