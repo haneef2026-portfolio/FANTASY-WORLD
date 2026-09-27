@@ -278,6 +278,49 @@
             font-size: 12px;
         }
 
+        /* CLUB LEGENDS */
+
+.legends-section {
+    margin-top: 70px;
+    margin-bottom: 70px;
+}
+
+.legends-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 12px;
+}
+
+.legend {
+    background: var(--ash);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    padding: 20px;
+
+    display: flex;
+    align-items: center;
+    gap: 18px;
+
+    transition: 0.25s;
+}
+
+.legend:hover {
+    transform: translateY(-4px);
+    border-color: rgba(108,171,221,0.55);
+    background: #17181b;
+}
+
+.legend-number {
+    color: var(--blue);
+    font-size: 24px;
+    font-weight: 1000;
+    min-width: 35px;
+}
+
+.legend-name {
+    font-weight: 800;
+    font-size: 15px;
+}
 
         /* TROPHIES */
 
