@@ -1,0 +1,714 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Manchester United | Fantasy World 2030</title>
+
+    <style>
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --red: #da291c;
+            --red-dark: #8b0000;
+            --white: #ffffff;
+            --black: #090909;
+            --ash: #111214;
+            --grey: #969696;
+            --border: rgba(255,255,255,0.09);
+        }
+
+        body {
+            font-family: Arial, Helvetica, sans-serif;
+            background:
+                radial-gradient(
+                    circle at 80% 0%,
+                    rgba(218,41,28,0.20),
+                    transparent 30%
+                ),
+                var(--black);
+            color: white;
+            min-height: 100vh;
+        }
+
+        /* NAVIGATION */
+
+        nav {
+            height: 75px;
+            padding: 0 6%;
+
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+
+            border-bottom: 1px solid var(--border);
+
+            background: rgba(5,5,5,0.9);
+            backdrop-filter: blur(15px);
+
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        .brand {
+            font-weight: 900;
+            letter-spacing: 2px;
+        }
+
+        .brand span {
+            color: var(--red);
+        }
+
+        .back-btn {
+            color: white;
+            text-decoration: none;
+            border: 1px solid #333;
+            padding: 10px 16px;
+            border-radius: 7px;
+            font-weight: 700;
+            transition: 0.25s;
+        }
+
+        .back-btn:hover {
+            border-color: var(--red);
+            color: var(--red);
+        }
+
+        /* HERO */
+
+        .hero {
+            min-height: 470px;
+            padding: 70px 8%;
+
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 2;
+        }
+
+        .club-label {
+            color: var(--red);
+            font-weight: 900;
+            letter-spacing: 4px;
+            font-size: 13px;
+            margin-bottom: 18px;
+        }
+
+        .hero h1 {
+            font-size: clamp(60px, 10vw, 125px);
+            line-height: 0.85;
+            font-weight: 1000;
+            letter-spacing: -6px;
+        }
+
+        .nickname {
+            font-size: 20px;
+            color: #ccc;
+            margin-top: 18px;
+        }
+
+        .club-info {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 12px;
+            margin-top: 28px;
+        }
+
+        .info-box {
+            background: var(--ash);
+            border: 1px solid var(--border);
+            padding: 14px 18px;
+            border-radius: 8px;
+        }
+
+        .info-box small {
+            display: block;
+            color: var(--grey);
+            font-size: 10px;
+            text-transform: uppercase;
+            margin-bottom: 5px;
+        }
+
+        .info-box strong {
+            font-size: 15px;
+        }
+
+        .united-symbol {
+            font-size: 230px;
+            opacity: 0.07;
+            position: absolute;
+            right: 5%;
+            transform: rotate(-8deg);
+        }
+
+        /* TEAM RATING */
+
+        .rating-card {
+            margin: 0 8% 50px;
+
+            padding: 25px;
+
+            border: 1px solid rgba(218,41,28,0.35);
+            border-radius: 14px;
+
+            background:
+                linear-gradient(
+                    110deg,
+                    rgba(218,41,28,0.12),
+                    rgba(255,255,255,0.02)
+                );
+
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .rating-card p {
+            color: var(--grey);
+            font-size: 12px;
+            letter-spacing: 2px;
+        }
+
+        .rating {
+            font-size: 55px;
+            font-weight: 1000;
+            color: var(--red);
+        }
+
+        /* MAIN */
+
+        main {
+            width: min(1200px, 90%);
+            margin: auto;
+        }
+
+        .section-title {
+            margin-bottom: 25px;
+        }
+
+        .section-title small {
+            color: var(--red);
+            font-weight: 900;
+            letter-spacing: 3px;
+        }
+
+        .section-title h2 {
+            font-size: 36px;
+            margin-top: 7px;
+        }
+
+        /* SQUAD */
+
+        .position-title {
+            margin: 35px 0 14px;
+
+            color: #aaa;
+
+            font-size: 13px;
+            letter-spacing: 3px;
+            font-weight: 900;
+        }
+
+        .squad-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 12px;
+        }
+
+        .player {
+            background: var(--ash);
+            border: 1px solid var(--border);
+
+            border-radius: 10px;
+            padding: 18px;
+
+            display: grid;
+            grid-template-columns: 45px 1fr 45px;
+
+            align-items: center;
+
+            transition: 0.25s;
+        }
+
+        .player:hover {
+            transform: translateY(-4px);
+            border-color: rgba(218,41,28,0.55);
+            background: #17181b;
+        }
+
+        .number {
+            color: var(--red);
+            font-weight: 1000;
+            font-size: 18px;
+        }
+
+        .player-name {
+            font-weight: 800;
+        }
+
+        .nationality {
+            color: var(--grey);
+            font-size: 11px;
+            margin-top: 5px;
+        }
+
+        .age {
+            text-align: right;
+            color: #aaa;
+            font-size: 12px;
+        }
+
+        /* TROPHIES */
+
+        .trophy-section {
+            margin-top: 70px;
+            margin-bottom: 70px;
+        }
+
+        .trophy-grid {
+            display: grid;
+            grid-template-columns: repeat(5, 1fr);
+            gap: 12px;
+        }
+
+        .trophy {
+            background: var(--ash);
+            border: 1px solid var(--border);
+
+            border-radius: 10px;
+
+            padding: 25px 15px;
+
+            text-align: center;
+
+            transition: 0.25s;
+        }
+
+        .trophy:hover {
+            border-color: var(--red);
+            transform: translateY(-5px);
+        }
+
+        .trophy-icon {
+            font-size: 35px;
+            margin-bottom: 12px;
+        }
+
+        .trophy h3 {
+            font-size: 13px;
+            color: #bbb;
+        }
+
+        .trophy strong {
+            display: block;
+            color: var(--red);
+            font-size: 30px;
+            margin-top: 7px;
+        }
+
+        /* FOOTER */
+
+        footer {
+            border-top: 1px solid var(--border);
+            padding: 40px;
+            text-align: center;
+            color: #666;
+        }
+
+        footer strong {
+            color: white;
+            letter-spacing: 3px;
+        }
+
+        /* MOBILE */
+
+        @media (max-width: 800px) {
+
+            .hero {
+                padding: 60px 5%;
+            }
+
+            .hero h1 {
+                font-size: 70px;
+            }
+
+            .united-symbol {
+                font-size: 150px;
+                right: -20px;
+            }
+
+            .squad-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .trophy-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .rating-card {
+                margin-left: 5%;
+                margin-right: 5%;
+            }
+        }
+
+    </style>
+
+</head>
+
+<body>
+
+    <!-- NAVIGATION -->
+
+    <nav>
+
+        <div class="brand">
+            FANTASY <span>WORLD</span>
+        </div>
+
+        <a href="../index.html" class="back-btn">
+            ← BACK TO CLUBS
+        </a>
+
+    </nav>
+
+
+    <!-- HERO -->
+
+    <header class="hero">
+
+        <div class="hero-content">
+
+            <div class="club-label">
+                PREMIER LEAGUE 2030
+            </div>
+
+            <h1>MANCHESTER UNITED</h1>
+
+            <p class="nickname">
+                RED DEVILS • MUN
+            </p>
+
+            <div class="club-info">
+
+                <div class="info-box">
+                    <small>Manager</small>
+                    <strong>Manchester United</strong>
+                </div>
+
+                <div class="info-box">
+                    <small>Stadium</small>
+                    <strong>Old Trafford</strong>
+                </div>
+
+                <div class="info-box">
+                    <small>Colours</small>
+                    <strong>Red / Black</strong>
+                </div>
+
+            </div>
+
+        </div>
+
+        <div class="united-symbol">
+            🔴
+        </div>
+
+    </header>
+
+
+    <!-- TEAM RATING -->
+
+    <div class="rating-card">
+
+        <div>
+            <p>FANTASY WORLD TEAM RATING</p>
+            <h2>MANCHESTER UNITED FC</h2>
+        </div>
+
+        <div class="rating">
+            84
+        </div>
+
+    </div>
+
+
+    <!-- MAIN CONTENT -->
+
+    <main>
+
+        <!-- SQUAD -->
+
+        <section>
+
+            <div class="section-title">
+
+                <small>MANCHESTER UNITED 2030</small>
+
+                <h2>FIRST TEAM</h2>
+
+            </div>
+
+
+            <!-- GOALKEEPER -->
+
+            <div class="position-title">
+                GOALKEEPER
+            </div>
+
+            <div class="squad-grid">
+
+                <div class="player">
+
+                    <div class="number">01</div>
+
+                    <div>
+                        <div class="player-name">Lammens</div>
+                        <div class="nationality">🇧🇪 Belgium</div>
+                    </div>
+
+                    <div class="age">24</div>
+
+                </div>
+
+            </div>
+
+
+            <!-- DEFENDERS -->
+
+            <div class="position-title">
+                DEFENDERS
+            </div>
+
+            <div class="squad-grid">
+
+                <div class="player">
+                    <div class="number">20</div>
+
+                    <div>
+                        <div class="player-name">Dalot</div>
+                        <div class="nationality">🇵🇹 Portugal</div>
+                    </div>
+
+                    <div class="age">31</div>
+                </div>
+
+
+                <div class="player">
+                    <div class="number">13</div>
+
+                    <div>
+                        <div class="player-name">Dorgu</div>
+                        <div class="nationality">🇩🇰 Denmark</div>
+                    </div>
+
+                    <div class="age">21</div>
+                </div>
+
+
+                <div class="player">
+                    <div class="number">05</div>
+
+                    <div>
+                        <div class="player-name">Maguire</div>
+                        <div class="nationality">🏴 England</div>
+                    </div>
+
+                    <div class="age">37</div>
+                </div>
+
+
+                <div class="player">
+                    <div class="number">04</div>
+
+                    <div>
+                        <div class="player-name">De Ligt</div>
+                        <div class="nationality">🇳🇱 Netherlands</div>
+                    </div>
+
+                    <div class="age">30</div>
+                </div>
+
+            </div>
+
+
+            <!-- MIDFIELDERS -->
+
+            <div class="position-title">
+                MIDFIELDERS
+            </div>
+
+            <div class="squad-grid">
+
+                <div class="player">
+                    <div class="number">08</div>
+
+                    <div>
+                        <div class="player-name">Bruno Fernandes</div>
+                        <div class="nationality">🇵🇹 Portugal • Captain</div>
+                    </div>
+
+                    <div class="age">35</div>
+                </div>
+
+
+                <div class="player">
+                    <div class="number">17</div>
+
+                    <div>
+                        <div class="player-name">Tielemans</div>
+                        <div class="nationality">🇧🇪 Belgium</div>
+                    </div>
+
+                    <div class="age">33</div>
+                </div>
+
+
+                <div class="player">
+                    <div class="number">20</div>
+
+                    <div>
+                        <div class="player-name">Baleba</div>
+                        <div class="nationality">🇨🇲 Cameroon</div>
+                    </div>
+
+                    <div class="age">22</div>
+                </div>
+
+            </div>
+
+
+            <!-- ATTACKERS -->
+
+            <div class="position-title">
+                ATTACKERS
+            </div>
+
+            <div class="squad-grid">
+
+                <div class="player">
+                    <div class="number">10</div>
+
+                    <div>
+                        <div class="player-name">Cunha</div>
+                        <div class="nationality">🇧🇷 Brazil</div>
+                    </div>
+
+                    <div class="age">31</div>
+                </div>
+
+
+                <div class="player">
+                    <div class="number">19</div>
+
+                    <div>
+                        <div class="player-name">Mbeumo</div>
+                        <div class="nationality">🇨🇲 Cameroon</div>
+                    </div>
+
+                    <div class="age">31</div>
+                </div>
+
+
+                <div class="player">
+                    <div class="number">09</div>
+
+                    <div>
+                        <div class="player-name">Sesko</div>
+                        <div class="nationality">🇸🇮 Slovenia</div>
+                    </div>
+
+                    <div class="age">27</div>
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- TROPHIES -->
+
+        <section class="trophy-section">
+
+            <div class="section-title">
+
+                <small>MANCHESTER UNITED HISTORY</small>
+
+                <h2>TROPHY CABINET</h2>
+
+            </div>
+
+
+            <div class="trophy-grid">
+
+                <div class="trophy">
+                    <div class="trophy-icon">🏆</div>
+                    <h3>PREMIER LEAGUE</h3>
+                    <strong>25</strong>
+                </div>
+
+
+                <div class="trophy">
+                    <div class="trophy-icon">🏆</div>
+                    <h3>CHAMPIONS LEAGUE</h3>
+                    <strong>0</strong>
+                </div>
+
+
+                <div class="trophy">
+                    <div class="trophy-icon">🏆</div>
+                    <h3>UEFA SUPERCUP</h3>
+                    <strong>0</strong>
+                </div>
+
+
+                <div class="trophy">
+                    <div class="trophy-icon">🏆</div>
+                    <h3>EUROPA LEAGUE</h3>
+                    <strong>15</strong>
+                </div>
+
+
+                <div class="trophy">
+                    <div class="trophy-icon">🌎</div>
+                    <h3>CLUB WORLD CUP</h3>
+                    <strong>0</strong>
+                </div>
+
+            </div>
+
+        </section>
+
+    </main>
+
+
+    <!-- FOOTER -->
+
+    <footer>
+
+        <strong>FANTASY WORLD</strong>
+
+        <p>
+            Manchester United • Premier League 2030
+        </p>
+
+    </footer>
+
+</body>
+
+                                   </html>
