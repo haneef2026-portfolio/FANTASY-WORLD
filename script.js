@@ -16,10 +16,13 @@ const clubs = [
     "Brentford",
     "Brighton",
     "Chelsea",
-    "Crystal Palace",
+    "Coventry", 
+   "Crystal Palace",
     "Everton",
     "Fulham",
-    "Leeds United",
+    "Hull",
+    "Ipswich",
+   "Leeds United",
     "Liverpool",
     "Manchester City",
     "Manchester United",
@@ -27,9 +30,8 @@ const clubs = [
     "Nottingham Forest",
     "Sunderland",
     "Tottenham",
-    "West Ham",
-    "Wolverhampton",
-    "Burnley"
+    
+    
 ];
 
 
